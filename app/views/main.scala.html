@@ -8,19 +8,25 @@
     <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))'>
     <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
     <style>
-    body {
-        margin-top: 50px;
-    }
+        body {
+            margin-top: 70px;
+            background: url(http://cdn.makeuseof.com/wp-content/uploads/2015/02/lenovo-superfish-840x420.jpg?bd76e7);
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a id="titleLink" class="brand" href="/">@title</a>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a id="titleLink" class="navbar-brand" href="/">@title</a>
             </div>
         </div>
-    </div>
+    </nav>
+    
     <div class="container">
         @content
     </div>
