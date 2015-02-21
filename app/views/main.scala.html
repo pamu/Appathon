@@ -5,30 +5,24 @@
 <head>
     <title>@title</title>
     <link rel='shortcut icon' type='image/png' href='@routes.Assets.at("images/favicon.png")'>
-    <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))'>
-    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
-    <style>
-        body {
-            margin-top: 70px;
-            background-image: url(http://developer.android.com/design/media/creative_vision_main.png);
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-    </style>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src='@routes.Assets.at("css/ie/html5shiv.js")'></script><![endif]-->
+    <script src='@routes.Assets.at("js/jquery.min.js")'></script>
+    <script src='@routes.Assets.at("js/jquery.scrollex.min.js")'></script>
+    <script src='@routes.Assets.at("js/jquery.scrolly.min.js")'></script>
+    <script src='@routes.Assets.at("js/skel.min.js")'></script>
+    <script src='@routes.Assets.at("js/init.js")'></script>
+    <noscript>
+        <link rel="stylesheet" href='@routes.Assets.at("css/skel.css")' />
+        <link rel="stylesheet" href='@routes.Assets.at("css/style.css")' />
+        <link rel="stylesheet" href='@routes.Assets.at("css/style-xlarge.css")' />
+    </noscript>
+    <!--[if lte IE 8]><link rel="stylesheet" href='@routes.Assets.at("css/ie/v8.css")' /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href='@routes.Assets.at("css/ie/v9.css")' /><![endif]-->
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a id="titleLink" class="navbar-brand" href="/">@title</a>
-            </div>
-        </div>
-    </nav>
-    
-    <div id="content" class="container scrollable">
-        @content
-    </div>
+    @content
 </body>
 </html>
