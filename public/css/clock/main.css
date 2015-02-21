@@ -86,6 +86,7 @@ p {
     );
 }
 
+/*
 #smallclock span:before {
     content: '–';
     position: absolute;
@@ -97,3 +98,4 @@ p {
     color: #000;
     background: #000;
 }
+*/
