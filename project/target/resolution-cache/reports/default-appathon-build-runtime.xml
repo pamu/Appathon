@@ -9,7 +9,7 @@
 		extra-scalaVersion="2.10"
 		conf="runtime"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20150223222253"/>
+		date="20150223224335"/>
 	<dependencies>
 		<module organisation="org.sonatype.plexus" name="plexus-cipher">
 			<revision name="1.7" status="release" pubdate="20110726233634" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spice.sonatype.org/${project.artifactId}" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="41">
