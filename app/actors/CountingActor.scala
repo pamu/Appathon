@@ -1,6 +1,7 @@
 package actors
 
 import akka.actor.{ActorLogging, Actor}
+import play.api.libs.iteratee.Concurrent
 
 /**
  * Created by android on 24/2/15.
@@ -8,18 +9,32 @@ import akka.actor.{ActorLogging, Actor}
 object CountingActor {
   case class Hit(ip: String)
   case object Hits
+  case object Stream
 }
 
 class CountingActor extends Actor with ActorLogging {
-  var hits = 0
+  
+  val (enumerator, channel) = Concurrent.broadcast[BigInt]
+  
+  var hits = BigInt(0)
+  
   import CountingActor._
+  
   def receive = {
+  
     case Hit(ip) => {
       hits += 1
+      channel.push(hits)
       log.info("hit from {}", ip)
     }
+  
     case Hits => {
       sender ! hits
     }
+  
+    case Stream => {
+      sender ! enumerator
+    }
+  
   }
 }
