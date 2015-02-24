@@ -11,6 +11,7 @@ import scala.concurrent.Future
 import com.typesafe.plugin._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import akka.pattern.pipe
+import play.api.Play.current
 
 object EmailActor {
   case class Email(from: String, to: String, subject: String, body: String)

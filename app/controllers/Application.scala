@@ -5,6 +5,7 @@ import play.api.data.Forms._
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator
 import play.api.mvc.{Action, Controller}
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 import scala.concurrent.Future
 
@@ -24,7 +25,7 @@ object Application extends Controller {
 
   def contact() = Action { implicit request =>
     contactUsForm.bindFromRequest().fold(
-      hasErrors => BadRequest(hasErrors),
+      hasErrors => BadRequest(hasErrors.errorsAsJson),
       data => Status(200)
     )
   }
