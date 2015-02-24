@@ -18,6 +18,7 @@ object AppathonGlobal extends GlobalSettings {
     super.onStart(app)
     Logger.info("Appathon started")
   }
+  
   override def onStop(app: Application): Unit = {
     super.onStop(app)
     appathonSystem.shutdown()
