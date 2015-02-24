@@ -14,7 +14,7 @@ object CountingActor {
 
 class CountingActor extends Actor with ActorLogging {
   
-  val (enumerator, channel) = Concurrent.broadcast[BigInt]
+  val (enumerator, channel) = Concurrent.broadcast[String]
   
   var hits = BigInt(0)
   
@@ -24,7 +24,7 @@ class CountingActor extends Actor with ActorLogging {
   
     case Hit(ip) => {
       hits += 1
-      channel.push(hits)
+      channel.push(hits toString)
       log.info("hit from {}", ip)
     }
   
