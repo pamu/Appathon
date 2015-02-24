@@ -1,5 +1,7 @@
 @(message: String)
 
+@import play.api.i18n.Messages
+
 @main("Apptitude 2015") {
     <!-- Header -->
     <section id="header">
@@ -35,7 +37,7 @@
                 <header class="major">
                     <h2>What is Apptitude ?</h2>
                 </header>
-                <p>Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat. Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam adipiscing interdum.</p>
+                <p>@Messages("appathon.what_is_apptitude")</p>
                 <div>
                     <button id="register" class="button special">Register</button>
                 </div>
