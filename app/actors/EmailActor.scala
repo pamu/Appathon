@@ -14,7 +14,7 @@ import akka.pattern.pipe
 import play.api.Play.current
 
 object EmailActor {
-  case class Email(from: String, to: String, subject: String, body: String)
+  case class Email(email: String, subject: String, body: String)
 }
 
 class EmailActor extends Actor with ActorLogging {
@@ -25,13 +25,13 @@ class EmailActor extends Actor with ActorLogging {
   
   def receive = {
     
-    case Email(from, to, subject, body) => {
+    case Email(email, subject, body) => {
       
-      log.info("got an email request from {}", from)
+      log.info("got an email request from {}", email)
 
       val mailFuture = Future {
-        mail.setFrom(to)
-        mail.setRecipient(from)
+        mail.setFrom(email)
+        mail.setRecipient(email)
         mail.setSubject(subject)
         mail.send(body)
       }
