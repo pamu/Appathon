@@ -5,6 +5,10 @@
 @main("Apptitude 2015") {
     <!-- Header -->
     <section id="header">
+      <div class="image right">
+	<img style="width:50%; height:auto" src='@routes.Assets.at("images/GDG_Logo.png")'/>
+	</div>
+	
         <header class="major">
             <div>
                 <span style="font-size: 300%;">
@@ -72,17 +76,17 @@
             <span class="image fit primary"><img src='@routes.Assets.at("images/pic02.jpg")' alt="" /></span>
             <div class="content">
                 <header class="major">
-                    <h2>What We Do ?</h2>
+                    <h2>What To Do ?</h2>
                 </header>
-                <p>@Messages("appathon.what_we_do")</p>
+                <p>@Messages("Build app on your choice of theme and win exciting prizes")</p>
                 <ul class="icons-grid">
                     <li>
                         <span class="icon major fa-camera-retro"></span>
-                        <h3>Magna Etiam</h3>
+                        <h3>Ideate</h3>
                     </li>
                     <li>
                         <span class="icon major fa-pencil"></span>
-                        <h3>Lorem Ipsum</h3>
+                        <h3>Design</h3>
                     </li>
                     <li>
                         <span class="icon major fa-code"></span>
@@ -90,9 +94,12 @@
                     </li>
                     <li>
                         <span class="icon major fa-coffee"></span>
-                        <h3>Have lots of Coffee</h3>
+                        <h3>Present</h3>
                     </li>
                 </ul>
+		 <div>
+                    <button id="rules" class="button special">Rules and Regulations</button>
+                </div>
             </div>
             <a href="#three" class="goto-next scrolly">Next</a>
         </div>
@@ -104,9 +111,14 @@
             <span class="image fit primary"><img src='@routes.Assets.at("images/pic03.jpg")' alt="" /></span>
             <div class="content">
                 <header class="major">
-                    <h2>About MAD</h2>
+                    <h2>Event Timeline</h2>
                 </header>
-                <p>@Messages("appathon.mad")</p>
+                <p>1st March : Registrations and app idea submission start</p>
+                <p>14th March: Final Day for Registrations and Idea Submission : First Round</p>
+		<p>16th March: Result Announcement of the First Round</p>
+		<p>30th March: Final Day for App apk Submission : Second Round</p>
+		<p>4th April : Showcasing of App : Final Round and Result anouncement</p>
+
             </div>
             <a href="#four" class="goto-next scrolly">Next</a>
         </div>
@@ -117,9 +129,11 @@
         <div class="container">
             <span class="image fit primary"><img src='@routes.Assets.at("images/pic04.jpg")' alt="" /></span>
             <div class="content">
-                <header class="major">
-                    <h2>Hello world</h2>
+               
+		<header class="major">
+                    <h2>About MAD</h2>
                 </header>
+                <p>@Messages("appathon.mad")</p>
 
             </div>
             <a href="#footer" class="goto-next scrolly">Next</a>
