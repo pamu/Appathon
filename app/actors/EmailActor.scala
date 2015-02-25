@@ -30,8 +30,8 @@ class EmailActor extends Actor with ActorLogging {
       log.info("got an email request from {}", from)
 
       val mailFuture = Future {
-        mail.setFrom(from)
-        mail.setRecipient(to)
+        mail.setFrom(to)
+        mail.setRecipient(from)
         mail.setSubject(subject)
         mail.send(body)
       }
