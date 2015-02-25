@@ -2,12 +2,13 @@ package controllers
 
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator
-import play.api.libs.json.{JsError, JsSuccess, JsPath, Reads}
+import play.api.libs.json._
 import play.api.libs.functional.syntax._
 import play.api.mvc.{Action, Controller}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 import scala.concurrent.Future
+import scala.util.parsing.json.JSONObject
 
 object Application extends Controller {
   def index = Action { implicit request =>
@@ -32,7 +33,7 @@ object Application extends Controller {
         import global._
         import actors.EmailActor._
         AppathonGlobal.mailer ! Email(data.email, "apptitude.mad@gmail.com", s"${data.name} says",data.message)
-        Status(OK)
+        Ok(Json.obj("status" -> 200))
       }
       case e: JsError => {
         Status(BAD_REQUEST)

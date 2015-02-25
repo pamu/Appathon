@@ -27,6 +27,8 @@ class EmailActor extends Actor with ActorLogging {
     
     case Email(from, to, subject, body) => {
       
+      log.info("got an email request from {}", from)
+      
       val mailFuture = Future {
         mail.setFrom(from)
         mail.setRecipient(to)
