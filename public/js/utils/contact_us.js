@@ -22,9 +22,7 @@ $(function() {
         item["message"] = message;
         
         var json = JSON.stringify(item);
-        
-        console.log(json);
-        
+
         $.ajax({
             url: '/contact',
             type: 'POST',
@@ -33,7 +31,6 @@ $(function() {
             dataType: 'json',
             async: true,
             success: function(msg) {
-                console.log(JSON.stringify(msg))
                 if(msg.status == 200) {
                     $("#form").empty();
                     $("#form").html("<h1>Form Submitted</h1>")
