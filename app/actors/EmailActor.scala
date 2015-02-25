@@ -28,21 +28,21 @@ class EmailActor extends Actor with ActorLogging {
     case Email(from, to, subject, body) => {
       
       log.info("got an email request from {}", from)
-      
+
       val mailFuture = Future {
         mail.setFrom(from)
         mail.setRecipient(to)
         mail.setSubject(subject)
         mail.send(body)
       }
-      
+
       mailFuture pipeTo self
     }
-    case Failure => {
-      log.info("Sendinf email failed")
+    case failure: Failure => {
+      log.info("Sending email failed reason: {}", failure.cause)
     }
     case Success => {
-      log.info("Email sent")
+      log.info("Email sent :)")
     } 
   
   }
