@@ -1,7 +1,11 @@
 $(function() {
 
-    $.get("/hits", function(data) {
+    var call = $.get("/hits", function(data) {
         $("#hits").text(data);
+    });
+    
+    call.fail(function() {
+        $("#hits").text(0);
     });
     
     if(!!window.EventSource) {
