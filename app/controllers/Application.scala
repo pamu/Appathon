@@ -1,9 +1,9 @@
 package controllers
 
-import play.api.data.Form
-import play.api.data.Forms._
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator
+import play.api.libs.json.{JsError, JsSuccess, JsPath, Reads}
+import play.api.libs.functional.syntax._
 import play.api.mvc.{Action, Controller}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
@@ -18,19 +18,26 @@ object Application extends Controller {
   }
 
   case class ContactUs(name: String, email: String, message: String)
-  val contactUsForm = Form (
-    mapping(
-      "name" -> nonEmptyText,
-      "email" -> email,
-      "message" -> nonEmptyText
-    )(ContactUs.apply)(ContactUs.unapply)
-  )
-
-  def contact() = Action { implicit request =>
-    contactUsForm.bindFromRequest().fold(
-      hasErrors => BadRequest(hasErrors.errorsAsJson),
-      data => Status(200)
-    )
+  
+  implicit val reads: Reads[ContactUs] = (
+      (JsPath \ "name").read[String] and
+      (JsPath \ "email").read[String] and
+      (JsPath \ "message").read[String]
+    )(ContactUs.apply _)
+  
+  def contact() = Action(parse.json) { implicit request =>
+    request.body.validate[ContactUs] match {
+      case success: JsSuccess[ContactUs] => {
+        val data = success.get
+        import global._
+        import actors.EmailActor._
+        AppathonGlobal.mailer ! Email(data.email, "apptitude.mad@gmail.com", s"${data.name} says",data.message)
+        Status(OK)
+      }
+      case e: JsError => {
+        Status(BAD_REQUEST)
+      }
+    }
   }
   
   def hits() = Action.async {
