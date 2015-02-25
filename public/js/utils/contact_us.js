@@ -33,7 +33,7 @@ $(function() {
             success: function(msg) {
                 if(msg.status == 200) {
                     $("#form").empty();
-                    $("#form").html("<h1>Form Submitted</h1>")
+                    $("#form").html("<p>Thank you for your interest :)</p>")
                 }
             }
         });
