@@ -10,7 +10,10 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import scala.concurrent.Future
 
 object Application extends Controller {
-  def index = Action {
+  def index = Action { implicit request =>
+    import actors.CountingActor._
+    import global._
+    AppathonGlobal.counter ! Hit(request.remoteAddress)
     Ok(views.html.index("Apptitude 2015"))
   }
 
@@ -32,14 +35,25 @@ object Application extends Controller {
   
   def hits() = Action.async {
     import global._
+    import actors.CountingActor._
+    import akka.pattern.ask
+    import akka.util.Timeout
+    import scala.concurrent.duration._
+    implicit val timeout = Timeout(5 seconds)
+    val future: Future[BigInt] = (AppathonGlobal.counter ? Hits).mapTo[BigInt]
+    future.map(hits => Ok(hits.toString)).fallbackTo(Future(NotFound))
+  }
+  
+  def hitsStream() = Action.async {
+    import global._
     import actors._
     import akka.pattern.ask
     import akka.util.Timeout
     import scala.concurrent.duration._
     implicit val timeout = Timeout(5 seconds)
-    
+
     val future: Future[Enumerator[String]] = (AppathonGlobal.counter ? CountingActor.Stream).mapTo[Enumerator[String]]
-    
+
     future.map(enumerator => Ok.chunked(enumerator &> EventSource()).as(EVENT_STREAM)).
       fallbackTo(Future(NotFound))
   }

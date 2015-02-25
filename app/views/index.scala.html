@@ -102,6 +102,20 @@
                 </header>
                 <p>@Messages("appathon.mad")</p>
             </div>
+            <a href="#four" class="goto-next scrolly">Next</a>
+        </div>
+    </section>
+
+    <!-- Four -->
+    <section id="four" class="main special">
+        <div class="container">
+            <span class="image fit primary"><img src='@routes.Assets.at("images/pic04.jpg")' alt="" /></span>
+            <div class="content">
+                <header class="major">
+                    <h2>Visits</h2>
+                </header>
+                <h1 id="hits" style="font-size: 300%;">0</h1>
+            </div>
             <a href="#footer" class="goto-next scrolly">Next</a>
         </div>
     </section>
@@ -112,18 +126,31 @@
             <header class="major">
                 <h2>Get in touch</h2>
             </header>
-            <form method="post" action="/contact">
+            <div id="form"><!--method="post" action="/contact"-->
                 <div class="row uniform">
-                    <div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-                    <div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-                    <div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+                    <div class="6u 12u$(xsmall)">
+                        <input type="text" name="name" id="name" placeholder="Name" />
+                        <p id="name_msg"></p>
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <input type="email" name="email" id="email" placeholder="Email"/>
+                        <p id="email_msg"></p>
+                    </div>
                     <div class="12u$">
+                        <textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
+                        <p id="message_msg"></p>
+                    </div>
+                    
+                    <div class="12u$">
+                        <button id="form_submit" class="button special">Submit</button>
+                        <!--
                         <ul class="actions">
                             <li><input type="submit" value="Send Message" class="special" /></li>
                         </ul>
+                        -->
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
         <footer>
             <ul class="icons">
