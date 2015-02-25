@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8a676093-0788-4aa2-99b8-a5203a3a906d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Application.scala" afterPath="$PROJECT_DIR$/app/controllers/Application.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/actors/EmailActor.scala" afterPath="$PROJECT_DIR$/app/actors/EmailActor.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Appathon.iws" />
@@ -58,10 +57,10 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/Application.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.4937656" vertical-offset="330" max-vertical-offset="1408">
-              <caret line="34" column="89" selection-start-line="34" selection-start-column="89" selection-end-line="34" selection-end-column="89" />
+              <caret line="34" column="103" selection-start-line="34" selection-start-column="103" selection-end-line="34" selection-end-column="103" />
               <folding>
-                <element signature="e#1374#1389#0" expanded="true" />
-                <element signature="e#1763#1778#0" expanded="true" />
+                <element signature="e#1371#1386#0" expanded="true" />
+                <element signature="e#1760#1775#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -997,10 +996,10 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/Application.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4937656" vertical-offset="330" max-vertical-offset="1408">
-          <caret line="34" column="89" selection-start-line="34" selection-start-column="89" selection-end-line="34" selection-end-column="89" />
+          <caret line="34" column="103" selection-start-line="34" selection-start-column="103" selection-end-line="34" selection-end-column="103" />
           <folding>
-            <element signature="e#1374#1389#0" expanded="true" />
-            <element signature="e#1763#1778#0" expanded="true" />
+            <element signature="e#1371#1386#0" expanded="true" />
+            <element signature="e#1760#1775#0" expanded="true" />
           </folding>
         </state>
       </provider>
