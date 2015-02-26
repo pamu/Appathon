@@ -5,22 +5,25 @@
 @main("Apptitude 2015") {
     <!-- Header -->
     <section id="header">
-      <div class="image right">
-	<img style="width:50%; height:auto" src='@routes.Assets.at("images/GDG_Logo.png")'/>
-	</div>
+        <div class="image left">
+            <img style="width:5%; height:auto; position: fixed; left: 5px;" src='@routes.Assets.at("images/iitmandi.jpg")'/>
+        </div>
+        <div class="image right">
+	        <img style="width:20%; height:auto; position: fixed; right: 5px;" src='@routes.Assets.at("images/GDG_Logo.png")'/>
+	    </div>
 	
         <header class="major">
             <div>
-                <span style="font-size: 200%;">
+                <span style="font-size: 250%;">
                     <a href="http://www.iitmandi.ac.in">IIT Mandi</a>
                 </span>
-                <span style="font-size: 100%;">
+                <span style="font-size: 150%;">
                     and
                 </span>
-                <span style="font-size: 200%;">
+                <span style="font-size: 250%;">
                     <a href="https://developers.google.com/groups/chapter/114790565755036483829/">GDG Jalandar</a>
                 </span>
-                <span style="font-size: 100%;">
+                <span style="font-size: 150%;">
                     presents
                 </span>
             </div>
@@ -30,28 +33,25 @@
                 </span>
             </h1>
             <h2>
-                <span>
-                    Android Hackathon by <a href="http://www.iitmandi.ac.in">IIT Mandi</a>
-                </span>
+                Android Hackathon
             </h2>
             <div>
                 <span style="font-size: 160%;">
-                    Win Prizes worth rupees 1Lac, get internship opportunities and meet real android developers*
+                    <a href="#one">Win Prizes worth rupees 1Lac, get internship opportunities and meet real android developers*</a>
                 </span>
             </div>
-            <div>
-                <p>Page Hits</p>
-            </div>
-            <div id="hits_section">
-                <h1 id="hits">
-                    0
-                </h1>
-            </div>
+            
         </header>
         <div class="container">
-            <ul class="actions">
-                <li><a href="#one" class="button special scrolly">Begin</a></li>
-            </ul>
+                    <div id="remind_me_form">
+                        <div id="remind_me_email" style="margin: 10px;">
+                            <input type="text" name="name" id="email_id" placeholder="Enter Email here to get Notified"/>
+                        </div>
+                        <div style="margin: 10px;">
+                            <button id="notify_me" class="button special">notify me when Registration begins</button>
+                        </div>
+                    </div>
+                <a  href="#one" class="got-next scrolly"><img src="/assets/css/images/arrow.svg" alt="down"/></a>
         </div>
     </section>
 
@@ -64,9 +64,13 @@
                     <h2>What is Apptitude ?</h2>
                 </header>
                 <p>@Messages("appathon.what_is_apptitude")</p>
+                <!--
                 <div>
                     <button id="register" class="button special" onclick="window.open('http://goo.gl/forms/9Sy5jFr1iN')">Register</button>
                 </div>
+                -->
+                
+                
             </div>
             <a href="#two" class="goto-next scrolly">Next</a>
         </div>
@@ -83,7 +87,7 @@
                 <p>@Messages("Build app on your choice of theme and win exciting prizes")</p>
                 <ul class="icons-grid">
                     <li>
-                        <span class="icon major fa-camera-retro"></span>
+                        <span class="icon major fa-coffee"></span>
                         <h3>Ideate</h3>
                     </li>
                     <li>
@@ -95,7 +99,7 @@
                         <h3>Code</h3>
                     </li>
                     <li>
-                        <span class="icon major fa-coffee"></span>
+                        <span class="icon major fa-camera-retro"></span>
                         <h3>Present</h3>
                     </li>
                 </ul>
@@ -115,11 +119,6 @@
                 <header class="major">
                     <h2>Event Timeline</h2>
                 </header>
-                <p>1st March : Registrations and app idea submission start</p>
-                <p>14th March: Final Day for Registrations and Idea Submission : First Round</p>
-		<p>16th March: Result Announcement of the First Round</p>
-		<p>30th March: Final Day for App apk Submission : Second Round</p>
-		<p>4th April : Showcasing of App : Final Round and Result anouncement</p>
 
             </div>
             <a href="#four" class="goto-next scrolly">Next</a>
@@ -131,12 +130,31 @@
         <div class="container">
             <span class="image fit primary"><img src='@routes.Assets.at("images/pic04.jpg")' alt="" /></span>
             <div class="content">
-               
-		<header class="major">
-                    <h2>About MAD</h2>
+                <header class="major">
+                    <h2>About Us</h2>
                 </header>
-                <p>@Messages("appathon.mad")</p>
+                <h3>Mad at IIT mandi</h3>
+                <p>@Messages("mad")</p>
+                <h3>GDG Jalandhar</h3>
+                <p>@Messages("gdg")</p>
+            </div>
+            <a href="#five" class="goto-next scrolly">Next</a>
+        </div>
+    </section>
 
+    <!-- Five -->
+    <section id="five" class="main special">
+        <div class="container">
+            <span class="image fit primary"><img src='@routes.Assets.at("images/pic04.jpg")' alt="" /></span>
+            <div class="content">
+                <header class="major">
+                    <h2>Page Hits</h2>
+                </header>
+                <div id="hits_section">
+                    <h1 id="hits">
+                        0
+                    </h1>
+                </div>
             </div>
             <a href="#footer" class="goto-next scrolly">Next</a>
         </div>
@@ -173,7 +191,35 @@
                     </div>
                 </div>
             </div>
+            <a href="#six" class="goto-next scrolly">Next</a>
         </div>
+        
+        <section id="six" class="main special">
+            <div class="container">
+                <span class="image fit primary"><img src='@routes.Assets.at("images/pic04.jpg")' alt="" /></span>
+                <div class="content">
+                    <header class="major">
+                        <h2>Discuss</h2>
+                    </header>
+                    
+                    <div id="disqus_thread"></div>
+                    
+                    <script type="text/javascript">
+                        /* * * CONFIGURATION VARIABLES * * */
+                        var disqus_shortname = 'httpapptitude2015herokuappcom';
+                        
+                        /* * * DON'T EDIT BELOW THIS LINE * * */
+                        (function() {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+                </div>
+            </div>
+        </section>
+        
         <footer>
             <ul class="icons">
                 <li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
