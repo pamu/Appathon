@@ -33,8 +33,8 @@
       <file leaf-file-name="index.scala.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/index.scala.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24538259" vertical-offset="4175" max-vertical-offset="5544">
-              <caret line="194" column="69" selection-start-line="194" selection-start-column="69" selection-end-line="194" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.17414248" vertical-offset="1188" max-vertical-offset="5544">
+              <caret line="57" column="143" selection-start-line="57" selection-start-column="143" selection-end-line="57" selection-end-column="143" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#section#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#1;n#section#0;n#!!top" expanded="true" />
@@ -1158,8 +1158,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/index.scala.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24538259" vertical-offset="4175" max-vertical-offset="5544">
-          <caret line="194" column="69" selection-start-line="194" selection-start-column="69" selection-end-line="194" selection-end-column="69" />
+        <state vertical-scroll-proportion="0.17414248" vertical-offset="1188" max-vertical-offset="5544">
+          <caret line="57" column="143" selection-start-line="57" selection-start-column="143" selection-end-line="57" selection-end-column="143" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#section#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#1;n#section#0;n#!!top" expanded="true" />
