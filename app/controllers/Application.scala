@@ -32,7 +32,8 @@ object Application extends Controller {
         val data = success.get
         import global._
         import actors.EmailActor._
-        AppathonGlobal.mailer ! Email("apptitude.mad@gmail.com", s"${data.name} says",data.email + " \n" + data.message)
+        import contacts._
+        AppathonGlobal.mailer ! MailContact(Constants.apptitudeEmail, s"${data.name} says", "Contact me @ "+data.email + " \n" + data.message)
         Ok(Json.obj("status" -> 200))
       }
       case e: JsError => {
