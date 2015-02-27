@@ -13975,6 +13975,23 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-sbt#apply-macro;0.13.7!apply-macro.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.4!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
+<<<<<<< HEAD
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 4406ms :: artifacts dl 129ms[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT compile produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT runtime produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT test produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT provided produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT optional produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT compile-internal produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT runtime-internal produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT test-internal produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT plugin produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT sources produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT docs produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT pom produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-pom.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT scala-tool produced in /home/android/Documents/SbtWorkspace/Appathon/project/target/resolution-cache/reports/default-appathon-build-scala-tool.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (4406ms resolve - 129ms download)[0m
+=======
 [0m[[0mdebug[0m] [0m:: resolution report :: resolve 7840ms :: artifacts dl 976ms[0m
 [0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT compile produced in /home/seekay/Appathon/project/target/resolution-cache/reports/default-appathon-build-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT runtime produced in /home/seekay/Appathon/project/target/resolution-cache/reports/default-appathon-build-runtime.xml[0m
@@ -13990,4 +14007,5 @@
 [0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT pom produced in /home/seekay/Appathon/project/target/resolution-cache/reports/default-appathon-build-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#appathon-build;0.1-SNAPSHOT scala-tool produced in /home/seekay/Appathon/project/target/resolution-cache/reports/default-appathon-build-scala-tool.xml[0m
 [0m[[0mdebug[0m] [0m	resolve done (7840ms resolve - 976ms download)[0m
+>>>>>>> 22e5a396be6e0f50880770a8282758d2f8e1e280
 [0m[[0minfo[0m] [0mDone updating.[0m

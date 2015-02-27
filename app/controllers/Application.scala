@@ -1,12 +1,10 @@
 package controllers
 
-import play.api.Play
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator
 import play.api.libs.json._
 import play.api.mvc.{Action, Controller}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.Play.current
 
 import scala.concurrent.Future
 

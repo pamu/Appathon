@@ -8,7 +8,8 @@ javacOptions ++= Seq("-source", "1.7", "-target", "1.7")
 
 libraryDependencies ++= Seq(
   "org.webjars" %% "webjars-play" % "2.3.0-2",
-  "com.typesafe.play.plugins" %% "play-plugins-mailer" % "2.3.1"
+  "com.typesafe.play.plugins" %% "play-plugins-mailer" % "2.3.1",
+  "com.typesafe.slick" %% "slick" % "2.1.0"
 )
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
