@@ -84,6 +84,4 @@ object Application extends Controller {
     future.map(enumerator => Ok.chunked(enumerator &> EventSource()).as(EVENT_STREAM)).
       fallbackTo(Future(NotFound))
   }
-  
-  
 }
