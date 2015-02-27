@@ -17,7 +17,7 @@ class Users(tag: Tag) extends Table[User](tag, "users") {
   def * = (email, timestamp, id.?) <> (User.tupled, User.unapply)
 }
 
-case class Reminder(userId: Long, status: Boolean, id: Option[Long] = None)
+case class Reminder(userId: Long, status: Boolean = false, id: Option[Long] = None)
 
 class Reminders(tag: Tag) extends Table[Reminder](tag, "reminders") {
   def userId = column[Long]("userId", O.NotNull)
