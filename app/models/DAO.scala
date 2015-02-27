@@ -26,8 +26,8 @@ object DAO {
   
   def create(): Unit = {
     db.withSession(implicit session => {
-      users.ddl.create
-      reminders.ddl.create
+      users.ddl.drop
+      reminders.ddl.drop
     })
   }
 }
