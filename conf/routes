@@ -4,6 +4,7 @@
 
 GET     /                           controllers.Application.index()
 POST    /contact                    controllers.Application.contact()
+POST    /remind                     controllers.Application.remind()
 GET     /hits                       controllers.Application.hits()
 GET     /hitsStream                 controllers.Application.hitsStream()
 

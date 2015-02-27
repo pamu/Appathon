@@ -3,12 +3,10 @@ package controllers
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator
 import play.api.libs.json._
-import play.api.libs.functional.syntax._
 import play.api.mvc.{Action, Controller}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 import scala.concurrent.Future
-import scala.util.parsing.json.JSONObject
 
 object Application extends Controller {
   def index = Action { implicit request =>
@@ -19,14 +17,17 @@ object Application extends Controller {
   }
 
   case class ContactUs(name: String, email: String, message: String)
-  
-  implicit val reads: Reads[ContactUs] = (
+
+  def contact() = Action(parse.json) { request =>
+
+    import play.api.libs.functional.syntax._
+    
+    implicit val reads: Reads[ContactUs] = (
       (JsPath \ "name").read[String] and
-      (JsPath \ "email").read[String] and
-      (JsPath \ "message").read[String]
-    )(ContactUs.apply _)
-  
-  def contact() = Action(parse.json) { implicit request =>
+        (JsPath \ "email").read[String] and
+        (JsPath \ "message").read[String]
+      )(ContactUs.apply _)
+    
     request.body.validate[ContactUs] match {
       case success: JsSuccess[ContactUs] => {
         val data = success.get
@@ -37,7 +38,23 @@ object Application extends Controller {
         Ok(Json.obj("status" -> 200))
       }
       case e: JsError => {
-        Status(BAD_REQUEST)
+        Status(BAD_REQUEST).as("application/json")
+      }
+    }
+  }
+  
+  case class Remind(email: String)
+  
+  def remind() = Action(parse.json) { request =>
+    implicit val remindReads: Reads[Remind] = (
+      (JsPath \ "email").read[String].map(email => Remind(email))
+      )
+    request.body.validate[Remind] match {
+      case success: JsSuccess[Remind] => {
+        Ok(Json.obj("status" -> 200))
+      }
+      case failure: JsError => {
+        Status(BAD_REQUEST).as("application/json")
       }
     }
   }
@@ -66,4 +83,6 @@ object Application extends Controller {
     future.map(enumerator => Ok.chunked(enumerator &> EventSource()).as(EVENT_STREAM)).
       fallbackTo(Future(NotFound))
   }
+  
+  
 }

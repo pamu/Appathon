@@ -11,8 +11,8 @@ import play.libs.Akka
 object AppathonGlobal extends GlobalSettings {
   
   lazy val appathonSystem = Akka.system()
-  lazy val counter = appathonSystem.actorOf(Props[CountingActor])
-  lazy val mailer = appathonSystem.actorOf(Props[EmailActor])
+  lazy val counter = appathonSystem.actorOf(Props[CountingActor], "CounterActor")
+  lazy val mailer = appathonSystem.actorOf(Props[EmailActor], "EmailActor")
   
   override def onStart(app: Application): Unit = {
     super.onStart(app)
