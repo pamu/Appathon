@@ -47,9 +47,11 @@ object Application extends Controller {
   case class Remind(email: String)
   
   def remind() = Action(parse.json) { request =>
+    
     implicit val remindReads: Reads[Remind] = (
       (JsPath \ "email").read[String].map(email => Remind(email))
       )
+    
     request.body.validate[Remind] match {
       case success: JsSuccess[Remind] => {
         val remindMe = success.get
