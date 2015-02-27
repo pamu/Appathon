@@ -1,5 +1,8 @@
 package controllers
 
+import java.sql.Timestamp
+import java.util.Date
+
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator
 import play.api.libs.json._
@@ -46,7 +49,7 @@ object Application extends Controller {
   
   case class Remind(email: String)
   
-  def remind() = Action(parse.json) { request =>
+  def remind() = Action.async(parse.json) { request =>
     
     implicit val remindReads: Reads[Remind] = (
       (JsPath \ "email").read[String].map(email => Remind(email))
@@ -59,10 +62,19 @@ object Application extends Controller {
         import actors.EmailActor._
         import constants._
         AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", "We will send you an remainder email, just after registrations are open.")
-        Ok(Json.obj("status" -> 200))
+        Future {
+          import models._
+          if(!DAO.userExists(remindMe.email)) {
+            val id = DAO.save(User(remindMe.email, new Timestamp(new Date().getTime)))
+            DAO.save(Reminder(id))
+          }else {
+            AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", "Looks like you have already visited this place. Anyways, We will send you an remainder email, just after registrations are open.")
+          }
+          Ok(Json.obj("status" -> 200))
+        }
       }
       case failure: JsError => {
-        Status(BAD_REQUEST).as("application/json")
+        Future(Status(BAD_REQUEST).as("application/json"))
       }
     }
   }

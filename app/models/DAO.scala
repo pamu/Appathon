@@ -37,7 +37,23 @@ object DAO {
     })
   }
   
-  def save(user: User): Unit = {
-    
+  
+  def userExists(email: String): Boolean = {
+    db.withSession(implicit session => {
+      val q = for(user <- users.filter(_.email === email)) yield user
+      q.exists.run
+    })
+  }
+  
+  def save(user: User): Long = {
+    db.withTransaction(implicit tx => {
+      (users returning users.map(_.id)) += user
+    })
+  }
+  
+  def save(reminder: Reminder): Long = {
+    db.withTransaction(implicit tx => {
+      (reminders returning reminders.map(_.id)) += reminder
+    })
   }
 }
