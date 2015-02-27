@@ -34,7 +34,7 @@ object Application extends Controller {
         val data = success.get
         import global._
         import actors.EmailActor._
-        import contacts._
+        import constants._
         AppathonGlobal.mailer ! MailContact(Constants.apptitudeEmail, s"${data.name} says", "Contact me @ "+data.email + " \n" + data.message)
         Ok(Json.obj("status" -> 200))
       }
@@ -52,6 +52,11 @@ object Application extends Controller {
       )
     request.body.validate[Remind] match {
       case success: JsSuccess[Remind] => {
+        val remindMe = success.get
+        import global._
+        import actors.EmailActor._
+        import constants._
+        AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", "You will send you an email once, just after registrations are open.")
         Ok(Json.obj("status" -> 200))
       }
       case failure: JsError => {

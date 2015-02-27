@@ -1,4 +1,4 @@
-package contacts
+package constants
 
 /**
  * Created by android on 26/2/15.
