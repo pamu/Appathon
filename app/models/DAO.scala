@@ -37,7 +37,11 @@ object DAO {
     })
   }
   
-  def save(user: User): Unit = {
-    
+  def save(user: User): Long = {
+    (users returning users.map(_.id)) += user
+  }
+  
+  def save(reminder: Reminder): Long = {
+    (reminders returning reminders.map(_.id)) += reminder
   }
 }
