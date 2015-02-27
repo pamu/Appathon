@@ -1,10 +1,12 @@
 package controllers
 
+import play.api.Play
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator
 import play.api.libs.json._
 import play.api.mvc.{Action, Controller}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.Play.current
 
 import scala.concurrent.Future
 
@@ -65,6 +67,10 @@ object Application extends Controller {
         Status(BAD_REQUEST).as("application/json")
       }
     }
+  }
+  
+  def rules() = Action { implicit request =>
+    Ok.sendFile(content = Play.getFile("public/docs/rules.pdf"), inline = true)
   }
   
   def hits() = Action.async {
