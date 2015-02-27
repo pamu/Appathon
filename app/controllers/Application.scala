@@ -1,10 +1,12 @@
 package controllers
 
+import play.api.Play
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator
 import play.api.libs.json._
 import play.api.mvc.{Action, Controller}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.Play.current
 
 import scala.concurrent.Future
 
@@ -34,7 +36,7 @@ object Application extends Controller {
         val data = success.get
         import global._
         import actors.EmailActor._
-        import contacts._
+        import constants._
         AppathonGlobal.mailer ! MailContact(Constants.apptitudeEmail, s"${data.name} says", "Contact me @ "+data.email + " \n" + data.message)
         Ok(Json.obj("status" -> 200))
       }
@@ -47,17 +49,28 @@ object Application extends Controller {
   case class Remind(email: String)
   
   def remind() = Action(parse.json) { request =>
+    
     implicit val remindReads: Reads[Remind] = (
       (JsPath \ "email").read[String].map(email => Remind(email))
       )
+    
     request.body.validate[Remind] match {
       case success: JsSuccess[Remind] => {
+        val remindMe = success.get
+        import global._
+        import actors.EmailActor._
+        import constants._
+        AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", "We will send you an remainder email, just after registrations are open.")
         Ok(Json.obj("status" -> 200))
       }
       case failure: JsError => {
         Status(BAD_REQUEST).as("application/json")
       }
     }
+  }
+  
+  def rules() = Action {
+    Ok("rules")
   }
   
   def hits() = Action.async {
@@ -84,6 +97,4 @@ object Application extends Controller {
     future.map(enumerator => Ok.chunked(enumerator &> EventSource()).as(EVENT_STREAM)).
       fallbackTo(Future(NotFound))
   }
-  
-  
 }
