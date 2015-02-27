@@ -38,10 +38,14 @@ object DAO {
   }
   
   def save(user: User): Long = {
-    (users returning users.map(_.id)) += user
+    db.withTransaction(implicit tx => {
+      (users returning users.map(_.id)) += user
+    })
   }
   
   def save(reminder: Reminder): Long = {
-    (reminders returning reminders.map(_.id)) += reminder
+    db.withTransaction(implicit tx => {
+      (reminders returning reminders.map(_.id)) += reminder
+    })
   }
 }
