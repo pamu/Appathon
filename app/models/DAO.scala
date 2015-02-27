@@ -36,4 +36,8 @@ object DAO {
       }
     })
   }
+  
+  def save(user: User): Unit = {
+    
+  }
 }

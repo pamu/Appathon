@@ -68,7 +68,7 @@ object Application extends Controller {
   }
   
   def rules() = Action {
-    Ok("rules")
+    Ok(views.html.rules())
   }
   
   def hits() = Action.async {
