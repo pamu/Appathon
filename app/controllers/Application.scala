@@ -56,7 +56,7 @@ object Application extends Controller {
         import global._
         import actors.EmailActor._
         import constants._
-        AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", "You will send you an email once, just after registrations are open.")
+        AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", "We will send you an remainder email, just after registrations are open.")
         Ok(Json.obj("status" -> 200))
       }
       case failure: JsError => {
