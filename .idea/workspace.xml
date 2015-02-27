@@ -68,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/app/actors/EmailActor.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.5945946" vertical-offset="924" max-vertical-offset="1496">
-              <caret line="57" column="66" selection-start-line="57" selection-start-column="66" selection-end-line="57" selection-end-column="66" />
+              <caret line="57" column="74" selection-start-line="57" selection-start-column="74" selection-end-line="57" selection-end-column="74" />
               <folding>
                 <element signature="e#175#203#0" expanded="true" />
               </folding>
@@ -1136,7 +1136,7 @@
     <entry file="file://$PROJECT_DIR$/app/actors/EmailActor.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5945946" vertical-offset="924" max-vertical-offset="1496">
-          <caret line="57" column="66" selection-start-line="57" selection-start-column="66" selection-end-line="57" selection-end-column="66" />
+          <caret line="57" column="74" selection-start-line="57" selection-start-column="74" selection-end-line="57" selection-end-column="74" />
           <folding>
             <element signature="e#175#203#0" expanded="true" />
           </folding>

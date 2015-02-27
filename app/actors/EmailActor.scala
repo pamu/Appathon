@@ -55,7 +55,7 @@ class EmailActor extends Actor with ActorLogging {
       mailFuture pipeTo self
     }
     case failure: Failure => {
-      log.info("Sending email failed reason: {}", failure.toString)
+      log.info("Sending email failed reason: {}", failure.cause.getMessage)
     }
     case Success => {
       log.info("Email sent :)")
