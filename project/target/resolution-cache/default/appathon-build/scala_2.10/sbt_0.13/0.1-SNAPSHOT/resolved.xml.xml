@@ -4,7 +4,7 @@
 		module="appathon-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20150227173110"
+		publication="20150227230217"
 		e:scalaVersion="2.10" e:sbtVersion="0.13"
 	>
 		<description>
