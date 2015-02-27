@@ -18,6 +18,7 @@ object AppathonGlobal extends GlobalSettings {
     super.onStart(app)
     Logger.info("Appathon started")
     models.DAO.create()
+    Logger.info("created")
   }
   
   override def onStop(app: Application): Unit = {
