@@ -9,6 +9,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import scala.concurrent.Future
 
 object Application extends Controller {
+  
   def index = Action { implicit request =>
     import actors.CountingActor._
     import global._
