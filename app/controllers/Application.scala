@@ -69,7 +69,7 @@ object Application extends Controller {
     }
   }
   
-  def rules() = Action { implicit request =>
+  def rules() = Action {
     Ok.sendFile(content = Play.getFile("public/docs/rules.pdf"), inline = true)
   }
   
