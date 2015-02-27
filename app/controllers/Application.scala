@@ -70,7 +70,7 @@ object Application extends Controller {
   }
   
   def rules() = Action {
-    Ok.sendFile(content = Play.getFile("public/docs/rules.pdf"), inline = true)
+    Ok("rules")
   }
   
   def hits() = Action.async {
