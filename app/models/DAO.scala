@@ -3,6 +3,9 @@ package models
 /**
  * Created by android on 27/2/15.
  */
+
+import play.api.Logger
+
 import scala.slick.driver.PostgresDriver.simple._
 import java.net.URI
 
@@ -19,7 +22,7 @@ object DAO {
   
   val password = uri.getUserInfo.split(":")(1)
   
-  def db = Database.forURL(
+  lazy val db = Database.forURL(
     driver = "org.postgresql.Driver",
     url = "jdbc:postgresql://" + uri.getHost + ":" + uri.getPort + uri.getPath, user = username,
     password = password)
@@ -27,11 +30,10 @@ object DAO {
   def createIfNotExists(): Unit = {
     db.withSession(implicit session => {
       import scala.slick.jdbc.meta._
-      
       if(MTable.getTables("reminders").list.isEmpty) {
         (users.ddl ++ reminders.ddl).create
+        Logger.info("tables created")
       }
-      
     })
   }
 }
