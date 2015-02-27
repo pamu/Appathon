@@ -64,8 +64,12 @@ object Application extends Controller {
         AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", "We will send you an remainder email, just after registrations are open.")
         Future {
           import models._
-          val id = DAO.save(User(remindMe.email, new Timestamp(new Date().getTime)))
-          DAO.save(Reminder(id))
+          if(!DAO.userExists(remindMe.email)) {
+            val id = DAO.save(User(remindMe.email, new Timestamp(new Date().getTime)))
+            DAO.save(Reminder(id))
+          }else {
+            AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", "Looks like you have already visited this place. Anyways, We will send you an remainder email, just after registrations are open.")
+          }
           Ok(Json.obj("status" -> 200))
         }
       }

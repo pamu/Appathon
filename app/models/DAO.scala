@@ -37,6 +37,14 @@ object DAO {
     })
   }
   
+  
+  def userExists(email: String): Boolean = {
+    db.withSession(implicit session => {
+      val q = for(user <- users.filter(_.email === email)) yield user
+      q.exists.run
+    })
+  }
+  
   def save(user: User): Long = {
     db.withTransaction(implicit tx => {
       (users returning users.map(_.id)) += user
