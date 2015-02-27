@@ -24,10 +24,14 @@ object DAO {
     url = "jdbc:postgresql://" + uri.getHost + ":" + uri.getPort + uri.getPath, user = username,
     password = password)
   
-  def create(): Unit = {
+  def createIfNotExists(): Unit = {
     db.withSession(implicit session => {
-      reminders.ddl.drop
-      users.ddl.drop
+      import scala.slick.jdbc.meta._
+      
+      if(MTable.getTables("reminders").list.isEmpty) {
+        (users.ddl ++ reminders.ddl).create
+      }
+      
     })
   }
 }
