@@ -22,7 +22,7 @@ object Application extends Controller {
     Ok(views.html.index("APPtitude"))
   }
 
-  case class ContactUs(name: String, email: StrinTimes New Roman', Times, serifg, message: String)
+  case class ContactUs(name: String, email: String, message: String)
 
   def contact() = Action(parse.json) { request =>
 
