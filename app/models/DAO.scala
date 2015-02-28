@@ -8,7 +8,6 @@ import play.api.Logger
 
 import scala.slick.driver.PostgresDriver.simple._
 import java.net.URI
-import Database.dynamicSession
 
 object DAO {
   
@@ -29,32 +28,32 @@ object DAO {
     password = password)
   
   def createIfNotExists(): Unit = {
-    db.withDynSession {
+    db.withSession(implicit session => {
       import scala.slick.jdbc.meta._
       if(MTable.getTables("reminders").list.isEmpty) {
         (users.ddl ++ reminders.ddl).create
         Logger.info("tables created")
       }
-    }
+    })
   }
   
   
   def userExists(email: String): Boolean = {
-    db.withDynSession {
+    db.withSession(implicit session => {
       val q = for(user <- users.filter(_.email === email)) yield user
       q.exists.run
-    }
+    })
   }
   
   def save(user: User): Long = {
-    db.withDynTransaction {
+    db.withTransaction(implicit tx => {
       (users returning users.map(_.id)) += user
-    }
+    })
   }
   
   def save(reminder: Reminder): Long = {
-    db.withDynTransaction {
+    db.withTransaction(implicit tx => {
       (reminders returning reminders.map(_.id)) += reminder
-    }
+    })
   }
 }
