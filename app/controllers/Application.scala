@@ -3,6 +3,10 @@ package controllers
 /**
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator **/
+
+import java.sql.Timestamp
+import java.util.Date
+
 import play.api.libs.json._
 import play.api.mvc.{Action, Controller}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -60,10 +64,13 @@ object Application extends Controller {
         import actors.EmailActor._
         import constants._
         import utils._
+        import models._
+        
         Future {
-          import models._
           if(DAO.userExists(remindMe.email)) {
-            AppathonGlobal.mailer ! RegHtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("Looks like you have already visited this place. Anyways, We will send you an remainder email, just after registrations are open."))
+            val id = DAO.save(User(remindMe.email, new Timestamp(new Date().getTime)))
+            DAO.save(Reminder(id))
+            AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("Looks like you have already visited this place. Anyways, We will send you an remainder email, just after registrations are open."))
           }else {
             AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("You will be reminded when the registrations open. Till then keep developing Apps."))
           }

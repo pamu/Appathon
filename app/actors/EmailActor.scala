@@ -1,13 +1,7 @@
 package actors
 
-import java.sql.Timestamp
-import java.util.Date
-
 import akka.actor.{ActorLogging, Actor}
 import akka.actor.Status.{Success, Failure}
-import constants.Constants
-import global.AppathonGlobal
-
 import scala.concurrent.Future
 
 /**
@@ -25,11 +19,6 @@ object EmailActor {
   case class EmailSent(to: String)
   case class HtmlEmail(to: String, from: String, subject: String, htmlBody: String)
   case class HtmlEmailSent(to: String)
-  
-  case class RegHtmlEmail(to: String, from: String, subject: String, htmlBody: String)
-  case class RegHtmlEmailSent(to: String)
-  
-  case class RegisterEmail(email: String)
 }
 
 class EmailActor extends Actor with ActorLogging {
@@ -81,52 +70,30 @@ class EmailActor extends Actor with ActorLogging {
       mailFuture pipeTo self
     }
 
-    case RegHtmlEmail(to, from, subject, htmlBody) => {
-      log.info("got an email request from {}", from)
-
-      val mailFuture = Future {
-        mail.setFrom(from)
-        mail.setRecipient(to)
-        mail.setSubject(subject)
-        mail.sendHtml(htmlBody)
-        RegHtmlEmailSent(to)
-      }
-
-      mailFuture pipeTo self
-      
-    }
-      
+   
     case failure: Failure => {
       log.info("Sending email failed reason: {}", failure.toString)
     }
       
     case success: Success => {
+      
       success.status match {
+        
         case EmailSent(email) => {
           log.info("email sent to {}", email)
-          self ! RegisterEmail(email)
         }
+        
         case HtmlEmailSent(email) => {
           log.info("email sent to {}", email)
-          self ! RegisterEmail(email)
         }
-        case RegHtmlEmailSent(email) => {
-          //ignore
-        }
+        
         case _ => log.info("unknown message")
       }
+      
       log.info("Email sent :)")
     }
       
-    case RegisterEmail(email) => {
-      val save = Future {
-        import models._
-        val id = DAO.save(User(email, new Timestamp(new Date().getTime)))
-        DAO.save(Reminder(id))
-      }
-      save pipeTo self
-    }
     case x => log.info("unknown message of type", x.getClass)
-  
+
   }
 }

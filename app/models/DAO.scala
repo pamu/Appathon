@@ -44,7 +44,7 @@ object DAO {
       q.exists.run
     })
   }
-  
+
   def save(user: User): Long = {
     db.withTransaction(implicit tx => {
       (users returning users.map(_.id)) += user
