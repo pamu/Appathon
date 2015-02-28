@@ -33,6 +33,10 @@ object Utils {
        |
        |${line}
        |
+       |Finally we will be thankful to you, if you can like our fb page https://www.facebook.com/apptitude15
+       |
+       |Twitter handle @Apptitude2015 and Our Twitter page is here https://twitter.com/Apptitude2015
+       |
        |Cheers!
        |<strong>Team Apptitude</strong>
        |</pre>|
