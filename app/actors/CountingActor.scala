@@ -26,6 +26,7 @@ class CountingActor extends Actor with ActorLogging {
       hits += 1
       //channel.push(hits toString)
       log.info("hit from {}", ip)
+      log.info("no of hits = {}", hits.toString)
     }
   
     case Hits => {
