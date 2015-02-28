@@ -29,13 +29,13 @@ object DAO {
     password = password)
   
   def createIfNotExists(): Unit = {
-    db.withSession(implicit session => {
+    db.withDynSession {
       import scala.slick.jdbc.meta._
       if(MTable.getTables("reminders").list.isEmpty) {
         (users.ddl ++ reminders.ddl).create
         Logger.info("tables created")
       }
-    })
+    }
   }
   
   
