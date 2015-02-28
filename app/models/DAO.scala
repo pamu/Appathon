@@ -8,6 +8,7 @@ import play.api.Logger
 
 import scala.slick.driver.PostgresDriver.simple._
 import java.net.URI
+import Database.dynamicSession
 
 object DAO {
   
@@ -39,21 +40,21 @@ object DAO {
   
   
   def userExists(email: String): Boolean = {
-    db.withSession(implicit session => {
+    db.withDynSession {
       val q = for(user <- users.filter(_.email === email)) yield user
       q.exists.run
-    })
+    }
   }
   
   def save(user: User): Long = {
-    db.withTransaction(implicit tx => {
+    db.withDynTransaction {
       (users returning users.map(_.id)) += user
-    })
+    }
   }
   
   def save(reminder: Reminder): Long = {
-    db.withTransaction(implicit tx => {
+    db.withDynTransaction {
       (reminders returning reminders.map(_.id)) += reminder
-    })
+    }
   }
 }
