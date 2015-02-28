@@ -61,12 +61,13 @@ object Application extends Controller {
         import global._
         import actors.EmailActor._
         import constants._
+        import utils._
         Future {
           import models._
           if(DAO.userExists(remindMe.email)) {
-            AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", "Looks like you have already visited this place. Anyways, We will send you an remainder email, just after registrations are open.")
+            AppathonGlobal.mailer ! Email(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("Looks like you have already visited this place. Anyways, We will send you an remainder email, just after registrations are open."))
           }else {
-            AppathonGlobal.mailer ! RegHtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Constants.mailBody(""))
+            AppathonGlobal.mailer ! RegHtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("You will be reminded when the registrations open. Till then keep developing Apps."))
           }
           Ok(Json.obj("status" -> 200))
         }
