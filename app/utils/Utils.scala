@@ -6,7 +6,7 @@ package utils
 object Utils {
   def mailBody(line: String): String  =
     s"""
-       |<pre>
+       |
        |<strong>Hi Developer,</strong>
        |
        |Welcome to the APPtitude community.
@@ -39,7 +39,6 @@ object Utils {
        |
        |Cheers!
        |<strong>Team Apptitude</strong>
-       |</pre>|
      """.stripMargin
 }
 
