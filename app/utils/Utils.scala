@@ -6,7 +6,6 @@ package utils
 object Utils {
   def mailBody(line: String): String  =
     s"""
-       |
        |<strong>Hi Developer,</strong>
        |
        |Welcome to the APPtitude community.
