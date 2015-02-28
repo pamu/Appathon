@@ -7,7 +7,7 @@ POST    /contact                    controllers.Application.contact()
 POST    /remind                     controllers.Application.remind()
 GET     /rules                      controllers.Application.rules()
 GET     /hits                       controllers.Application.hits()
-GET     /hitsStream                 controllers.Application.hitsStream()
+#GET     /hitsStream                 controllers.Application.hitsStream()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
