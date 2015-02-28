@@ -8,7 +8,6 @@ import scala.concurrent.Future
  * Created by android on 24/2/15.
  */
 import com.typesafe.plugin._
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import akka.pattern.pipe
 import play.api.Play.current
 
@@ -22,6 +21,8 @@ object EmailActor {
 }
 
 class EmailActor extends Actor with ActorLogging {
+  
+  import context.dispatcher
   
   val mail = use[MailerPlugin].email
   
