@@ -17,7 +17,7 @@ object Application extends Controller {
     import actors.CountingActor._
     import global._
     AppathonGlobal.counter ! Hit(request.remoteAddress)
-    Ok(views.html.index("Apptitude 2015"))
+    Ok(views.html.index("Apptitude"))
   }
 
   case class ContactUs(name: String, email: String, message: String)
