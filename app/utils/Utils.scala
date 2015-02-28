@@ -27,10 +27,9 @@ object Utils {
        |
        |April 4th : Result Announcement
        |
-       |
        |For  Rules and Regulations, visit - www.apptitude.co.in/rules.
        |
-       |${line}
+       |<strong style="color: red;">${line}</strong>
        |
        |Finally we will be thankful to you, if you can like our fb page https://www.facebook.com/apptitude15
        |

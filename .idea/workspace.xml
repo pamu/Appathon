@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a676093-0788-4aa2-99b8-a5203a3a906d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/Application.scala" afterPath="$PROJECT_DIR$/app/controllers/Application.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utils/Utils.scala" afterPath="$PROJECT_DIR$/app/utils/Utils.scala" />
     </list>
     <ignored path="Appathon.iws" />
@@ -56,10 +55,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmailActor.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EmailActor.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/actors/EmailActor.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7029221" vertical-offset="1599" max-vertical-offset="3036">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1599" max-vertical-offset="3036">
               <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
               <folding>
                 <element signature="e#16#41#0" expanded="true" />
@@ -69,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Utils.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Utils.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/utils/Utils.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1078">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.5837479" vertical-offset="330" max-vertical-offset="1056">
+              <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -150,8 +149,8 @@
         <option value="$PROJECT_DIR$/app/constants/Constants.scala" />
         <option value="$PROJECT_DIR$/app/global/AppathonGlobal.scala" />
         <option value="$PROJECT_DIR$/app/models/DAO.scala" />
-        <option value="$PROJECT_DIR$/app/utils/Utils.scala" />
         <option value="$PROJECT_DIR$/app/controllers/Application.scala" />
+        <option value="$PROJECT_DIR$/app/utils/Utils.scala" />
       </list>
     </option>
   </component>
@@ -1168,14 +1167,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/utils/Utils.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1078">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/global/AppathonGlobal.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="682">
@@ -1200,12 +1191,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/actors/EmailActor.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7029221" vertical-offset="1599" max-vertical-offset="3036">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1599" max-vertical-offset="3036">
           <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding>
             <element signature="e#16#41#0" expanded="true" />
             <element signature="e#280#308#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utils/Utils.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5837479" vertical-offset="330" max-vertical-offset="1056">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
