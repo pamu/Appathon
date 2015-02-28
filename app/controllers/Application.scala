@@ -94,6 +94,7 @@ object Application extends Controller {
     future.map(hits => Ok(hits.toString)).fallbackTo(Future(NotFound))
   }
   
+  /**
   def hitsStream() = Action.async {
     import global._
     import actors._
@@ -106,5 +107,5 @@ object Application extends Controller {
 
     future.map(enumerator => Ok.chunked(enumerator &> EventSource()).as(EVENT_STREAM)).
       fallbackTo(Future(NotFound))
-  }
+  }**/
 }
