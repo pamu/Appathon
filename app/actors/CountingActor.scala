@@ -16,7 +16,7 @@ class CountingActor extends Actor with ActorLogging {
   
   val (enumerator, channel) = Concurrent.broadcast[String]
   
-  var hits = BigInt(1000)
+  var hits = BigInt(1369)
   
   import CountingActor._
   
