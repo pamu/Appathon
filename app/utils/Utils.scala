@@ -6,7 +6,7 @@ package utils
 object Utils {
   def mailBody(line: String): String  =
     s"""
-       |<pre style="font-family: Monaco, Times, serif;">
+       |<pre style="font-family: 'Times New Roman', 'Lucida Console', Times, serif;">
        |
        |<strong>Hi Developer,</strong>
        |
