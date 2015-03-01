@@ -15,6 +15,8 @@ object DAO {
   
   val reminders = TableQuery[Reminders]
   
+  val hits = TableQuery[Hits]
+  
   val uri = new URI("postgres://lonctegzeyicvj:IGReZOVZd1_0nmOIVH4ElAVe9M@ec2-50-19-236-178." +
   "compute-1.amazonaws.com:5432/d439cvtcclgcrq")
   
@@ -33,6 +35,10 @@ object DAO {
       if(MTable.getTables("reminders").list.isEmpty) {
         (users.ddl ++ reminders.ddl).create
         Logger.info("tables created")
+      }
+      if(MTable.getTables("hits").list.isEmpty) {
+        hits.ddl.create
+        Logger.info("hits table created");
       }
     })
   }
@@ -54,6 +60,17 @@ object DAO {
   def save(reminder: Reminder): Long = {
     db.withTransaction(implicit tx => {
       (reminders returning reminders.map(_.id)) += reminder
+    })
+  }
+  
+  def put(hitCount: Long): Long = {
+    db.withTransaction(implicit tx => {
+      val q = for(hit <- hits.filter(_.id === 1L)) yield hit
+      if(q.exists.run) {
+        q.update(Hit(hitCount))
+      }else {
+        q.insert(Hit(hitCount))
+      }
     })
   }
 }

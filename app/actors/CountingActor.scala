@@ -1,6 +1,9 @@
 package actors
 
 import akka.actor.{ActorLogging, Actor}
+import scala.concurrent.Future
+import akka.pattern.pipe
+
 //import play.api.libs.iteratee.Concurrent
 
 /**
@@ -16,7 +19,7 @@ class CountingActor extends Actor with ActorLogging {
   
   //val (enumerator, channel) = Concurrent.broadcast[String]
   
-  var hits = BigInt(0)
+  var hits = 0L
   
   import CountingActor._
   
@@ -27,6 +30,11 @@ class CountingActor extends Actor with ActorLogging {
       //channel.push(hits toString)
       log.info("hit from {}", ip)
       log.info("no of hits = {}", hits.toString)
+      import context.dispatcher
+      val saveHits = Future {
+        models.DAO.put(hits)
+      }
+      saveHits pipeTo self
     }
   
     case Hits => {
