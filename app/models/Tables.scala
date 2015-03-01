@@ -29,7 +29,7 @@ class Reminders(tag: Tag) extends Table[Reminder](tag, "reminders") {
 
 case class Hit(hits: Long, id: Option[Long] = None)
 
-class Hits(tag: Tag) extends Table[Hit](tag, "HITS") {
+class Hits(tag: Tag) extends Table[Hit](tag, "hits") {
   def hits = column[Long]("hits", O.NotNull)
   def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
   def * = (hits, id.?) <> (Hit.tupled, Hit.unapply)
