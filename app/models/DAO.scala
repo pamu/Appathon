@@ -64,7 +64,7 @@ object DAO {
   }
   
   def put(hitCount: Long): Long = {
-    db.withTransaction(implicit tx => {
+    db.withSession(implicit session => {
       val q = for(hit <- hits.filter(_.id === 1L)) yield hit
       if(q.exists.run) {
         q.update(Hit(hitCount))
