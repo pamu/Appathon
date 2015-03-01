@@ -90,6 +90,11 @@
 			margin: -2em 0 2.5em 0;
 		}
 
+			#header .container {
+			    margin-left: -50%;
+}
+		
+
 /* Footer */
 
 	#footer .container {
