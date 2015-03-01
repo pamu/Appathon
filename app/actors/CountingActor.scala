@@ -1,9 +1,12 @@
 package actors
 
+import java.util.Date
+
 import akka.actor.Status.{Failure, Success}
 import akka.actor.{ActorLogging, Actor}
 import scala.concurrent.Future
 import akka.pattern.pipe
+import java.sql.Timestamp
 
 //import play.api.libs.iteratee.Concurrent
 
@@ -35,7 +38,8 @@ class CountingActor extends Actor with ActorLogging {
       log.info("no of hits = {}", hits.toString)
       
       val saveHits = Future {
-        models.DAO.put(hits)
+        import models._
+        DAO.save(Hit(hits, new Timestamp(new Date().getTime)))
       }
       saveHits pipeTo self
     }

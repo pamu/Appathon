@@ -39,6 +39,8 @@ object DAO {
       if(MTable.getTables("hits").list.isEmpty) {
         hits.ddl.create
         Logger.info("hits table created");
+      }else {
+        hits.ddl.drop
       }
     })
   }
@@ -63,20 +65,9 @@ object DAO {
     })
   }
   
-  def put(hitCount: Long): Long = {
-    db.withSession(implicit session => {
-      val q = for(hit <- hits.filter(_.id === 1L)) yield hit.hits
-      q.update(hitCount)
-    })
-  }
-  
-  def init(): Unit = {
-    db.withSession(implicit session => {
-      try {
-        hits += Hit(0, Some(1))
-      }catch {
-        case _: Exception =>
-      }
+  def save(hit: Hit): Long = {
+    db.withTransaction(implicit tx => {
+      (hits returning hits.map(_.id)) += hit
     })
   }
 }
