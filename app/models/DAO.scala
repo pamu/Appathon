@@ -65,12 +65,18 @@ object DAO {
   
   def put(hitCount: Long): Long = {
     db.withSession(implicit session => {
+      val q = for(hit <- hits.filter(_.id === 1L)) yield hit.hits
+      q.update(hitCount)
+    })
+  }
+  
+  def init(): Unit = {
+    db.withSession(implicit session => {
       val q = for(hit <- hits.filter(_.id === 1L)) yield hit
-      if(q.exists.run) {
-        q.update(Hit(hitCount))
-      }else {
-        q.insert(Hit(hitCount))
+      if(!q.exists.run) {
+        q.insert(Hit(0, Some(1)))
       }
     })
+    
   }
 }
