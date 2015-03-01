@@ -74,6 +74,12 @@ object DAO {
       val q = for(hit <- hits.filter(_.id === 1L)) yield hit.hits
       q.update(hitCount)
     })
-    
+  }
+  
+  def getHits: Long = {
+    db.withSession(implicit session => {
+      val q = for(hit <- hits.filter(_.id === 1L)) yield hit.hits
+      q.first
+    })
   }
 }
