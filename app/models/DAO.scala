@@ -39,10 +39,6 @@ object DAO {
       if(MTable.getTables("hits").list.isEmpty) {
         hits.ddl.create
         Logger.info("hits table created");
-      }else {
-        hits.ddl.drop
-        hits.ddl.create
-        save(Hit(0))
       }
     })
   }
