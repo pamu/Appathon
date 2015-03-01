@@ -73,10 +73,8 @@ object Application extends Controller {
             AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("Looks like you have already visited this place. Anyways, We will send you an remainder email, just after registrations are open."))
           
           }else {
-            val calender = new GregorianCalendar()
-            val timeZone = TimeZone.getTimeZone("Asia/Calcutta")
-            calender.setTimeZone(timeZone)
-            val id = DAO.save(User(remindMe.email, new Timestamp(calender.getTime.getTime)))
+
+            val id = DAO.save(User(remindMe.email, new Timestamp(new Date().getTime)))
             DAO.save(Reminder(id))
             
             AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("You will be reminded when the registrations open. Till then keep developing Apps."))
