@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8a676093-0788-4aa2-99b8-a5203a3a906d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/global/AppathonGlobal.scala" afterPath="$PROJECT_DIR$/app/global/AppathonGlobal.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/DAO.scala" afterPath="$PROJECT_DIR$/app/models/DAO.scala" />
     </list>
     <ignored path="Appathon.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/app/global/AppathonGlobal.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.3063063" vertical-offset="238" max-vertical-offset="704">
-              <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+              <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -1261,7 +1260,7 @@
     <entry file="file://$PROJECT_DIR$/app/global/AppathonGlobal.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3063063" vertical-offset="238" max-vertical-offset="704">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
           <folding />
         </state>
       </provider>
