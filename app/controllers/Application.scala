@@ -7,6 +7,8 @@ import play.api.libs.iteratee.Enumerator **/
 import java.sql.Timestamp
 import java.util.{TimeZone, GregorianCalendar, Date}
 
+import actors.CountingActor.Hit
+import global.AppathonGlobal
 import play.api.libs.json._
 import play.api.mvc.{Action, Controller}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -89,7 +91,8 @@ object Application extends Controller {
     }
   }
   
-  def rules() = Action {
+  def rules() = Action { implicit request =>
+    AppathonGlobal.counter ! Hit(request.remoteAddress)
     Ok(views.html.rules())
   }
   
@@ -100,7 +103,7 @@ object Application extends Controller {
     import akka.util.Timeout
     import scala.concurrent.duration._
     implicit val timeout = Timeout(5 seconds)
-    val future: Future[BigInt] = (AppathonGlobal.counter ? Hits).mapTo[BigInt]
+    val future: Future[Long] = (AppathonGlobal.counter ? Hits).mapTo[Long]
     future.map(hits => Ok(hits.toString)).fallbackTo(Future(NotFound))
   }
   
