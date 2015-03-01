@@ -72,11 +72,11 @@ object DAO {
   
   def init(): Unit = {
     db.withSession(implicit session => {
-      val q = for(hit <- hits.filter(_.id === 1L)) yield hit
-      if(!q.exists.run) {
-        q.insert(Hit(0, Some(1)))
+      try {
+        hits += Hit(0, Some(1))
+      }catch {
+        case _: Exception =>
       }
     })
-    
   }
 }
