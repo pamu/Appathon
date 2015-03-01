@@ -1,6 +1,10 @@
 package actors
 
+import akka.actor.Status.{Failure, Success}
 import akka.actor.{ActorLogging, Actor}
+import scala.concurrent.Future
+import akka.pattern.pipe
+
 //import play.api.libs.iteratee.Concurrent
 
 /**
@@ -15,8 +19,10 @@ object CountingActor {
 class CountingActor extends Actor with ActorLogging {
   
   //val (enumerator, channel) = Concurrent.broadcast[String]
+
+  import context.dispatcher
   
-  var hits = BigInt(0)
+  var hits = 0L
   
   import CountingActor._
   
@@ -27,11 +33,19 @@ class CountingActor extends Actor with ActorLogging {
       //channel.push(hits toString)
       log.info("hit from {}", ip)
       log.info("no of hits = {}", hits.toString)
+      
+      val saveHits = Future {
+        models.DAO.put(hits)
+      }
+      saveHits pipeTo self
     }
   
     case Hits => {
       sender ! hits
     }
+
+    case Success => log.info("successful database update")
+    case Failure => log.info("failed database update")
       
     /**
     case Stream => {
