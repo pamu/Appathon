@@ -27,11 +27,10 @@ class Reminders(tag: Tag) extends Table[Reminder](tag, "reminders") {
   def userIdFk = foreignKey("user_reminder_userId_fk", userId, TableQuery[Users])(_.id)
 }
 
-case class Hit(hits: Long, timestamp: Timestamp, id: Option[Long] = None)
+case class Hit(hits: Long, id: Option[Long] = None)
 
 class Hits(tag: Tag) extends Table[Hit](tag, "hits") {
   def hits = column[Long]("hits", O.NotNull)
-  def timestamp = column[Timestamp]("timestamp", O.NotNull)
   def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
-  def * = (hits, timestamp, id.?) <> (Hit.tupled, Hit.unapply)
+  def * = (hits, id.?) <> (Hit.tupled, Hit.unapply)
 }

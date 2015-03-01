@@ -39,6 +39,10 @@ object DAO {
       if(MTable.getTables("hits").list.isEmpty) {
         hits.ddl.create
         Logger.info("hits table created");
+      }else {
+        hits.ddl.drop
+        hits.ddl.create
+        save(Hit(0))
       }
     })
   }
@@ -67,5 +71,13 @@ object DAO {
     db.withTransaction(implicit tx => {
       (hits returning hits.map(_.id)) += hit
     })
+  }
+  
+  def updateHits(hitCount: Long): Unit = {
+    db.withTransaction(implicit tx => {
+      val q = for(hit <- hits.filter(_.id === 1L)) yield hit.hits
+      q.update(hitCount)
+    })
+    
   }
 }
