@@ -103,7 +103,7 @@ class EmailActor extends Actor with ActorLogging {
       f pipeTo self
     }
 
-    case RegHtmlEmail(to) => {
+    case RegHtmlEmailSent(to) => {
       log.info("already registered user")
     }
       
