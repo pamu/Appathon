@@ -14,8 +14,7 @@ import akka.pattern.pipe
  * Created by android on 2/3/15.
  */
 object PersistenceActor {
-  case class Email(email: String)
-  case class Persist(email: Email)
+  case class Persist(email: String)
 }
 
 class PersistenceActor extends Actor with ActorLogging {
@@ -26,7 +25,7 @@ class PersistenceActor extends Actor with ActorLogging {
       import context.dispatcher
       Future {
         import models._
-        val id = DAO.save(User(email.email, new Timestamp(new Date().getTime)))
+        val id = DAO.save(User(email, new Timestamp(new Date().getTime)))
         DAO.save(Reminder(id))
       } pipeTo self
     }

@@ -73,7 +73,7 @@ object Application extends Controller {
             "Anyways, We will send you an remainder email, just after registrations are open." +
             " This might have happened because of too many clicks on notify button on http://www.apptitude.co.in/"))
         }else {
-          AppathonGlobal.persist ! Persist(Email(remindMe.email))
+          AppathonGlobal.persist ! Persist(remindMe.email)
           AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("You will be reminded when the registrations open. Till then keep developing Apps."))
         }
         
