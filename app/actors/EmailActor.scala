@@ -4,7 +4,7 @@ import java.sql.Timestamp
 import java.util.Date
 
 import akka.actor.{ActorLogging, Actor}
-import akka.actor.Status.Failure
+import akka.actor.Status.{Success, Failure}
 import models.{Reminder, User, DAO}
 import scala.concurrent.Future
 
@@ -110,6 +110,8 @@ class EmailActor extends Actor with ActorLogging {
     case failure: Failure => {
       log.info("Sending email failed reason: {}", failure.toString)
     }
+
+    case Success(status) => log.info("got a success message with status: ", status)
       
     case x => log.info("unknown message of type", x.getClass)
 

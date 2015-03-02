@@ -4,9 +4,6 @@ package controllers
 import play.api.libs.EventSource
 import play.api.libs.iteratee.Enumerator **/
 
-import java.sql.Timestamp
-import java.util.{TimeZone, GregorianCalendar, Date}
-
 import actors.CountingActor.Hit
 import global.AppathonGlobal
 import play.api.libs.json._
