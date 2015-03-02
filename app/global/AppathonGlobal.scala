@@ -1,6 +1,6 @@
 package global
 
-import actors.{EmailActor, CountingActor}
+import actors.{PersistenceActor, EmailActor, CountingActor}
 import akka.actor.Props
 import play.api.{Logger, GlobalSettings, Application}
 import play.libs.Akka
@@ -13,6 +13,7 @@ object AppathonGlobal extends GlobalSettings {
   lazy val appathonSystem = Akka.system()
   lazy val counter = appathonSystem.actorOf(Props[CountingActor], "CounterActor")
   lazy val mailer = appathonSystem.actorOf(Props[EmailActor], "EmailActor")
+  lazy val persist = appathonSystem.actorOf(Props[PersistenceActor], "PersistenceActor")
   
   override def onStart(app: Application): Unit = {
     super.onStart(app)

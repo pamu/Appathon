@@ -62,16 +62,18 @@ object Application extends Controller {
         val remindMe = success.get
         import global._
         import actors.EmailActor._
+        import actors.PersistenceActor._
         import constants._
         import utils._
         import models._
         
         if(DAO.userExists(remindMe.email)) {
-          AppathonGlobal.mailer ! RegHtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for" +
+          AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for" +
             " your interest :)", Utils.mailBody("You have already registered for notification. " +
             "Anyways, We will send you an remainder email, just after registrations are open." +
             " This might have happened because of too many clicks on notify button on http://www.apptitude.co.in/"))
         }else {
+          AppathonGlobal.persist ! Persist(Email(remindMe.email))
           AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("You will be reminded when the registrations open. Till then keep developing Apps."))
         }
         
