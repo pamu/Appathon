@@ -53,13 +53,14 @@ object Application extends Controller {
   
   case class Remind(email: String)
   
-  def remind() = Action.async(parse.json) { request =>
+  def remind() = Action(parse.json) { request =>
     
     implicit val remindReads: Reads[Remind] = (
       (JsPath \ "email").read[String].map(email => Remind(email))
       )
     
     request.body.validate[Remind] match {
+        
       case success: JsSuccess[Remind] => {
         val remindMe = success.get
         import global._
@@ -68,26 +69,19 @@ object Application extends Controller {
         import utils._
         import models._
         
-        Future {
-          
-          if(DAO.userExists(remindMe.email)) {
-            
-            AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("Looks like you have already visited this place. Anyways, We will send you an remainder email, just after registrations are open."))
-          
-          }else {
-
-            val id = DAO.save(User(remindMe.email, new Timestamp(new Date().getTime)))
-            DAO.save(Reminder(id))
-            
-            AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("You will be reminded when the registrations open. Till then keep developing Apps."))
-          }
-          
-          Ok(Json.obj("status" -> 200))
+        if(DAO.userExists(remindMe.email)) {
+          AppathonGlobal.mailer ! RegHtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for" +
+            " your interest :)", Utils.mailBody("You have already registered for notification. " +
+            "Anyways, We will send you an remainder email, just after registrations are open." +
+            " This might have happened because of too many clicks on notify button on http://www.apptitude.co.in/"))
+        }else {
+          AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("You will be reminded when the registrations open. Till then keep developing Apps."))
         }
+        
+        Ok(Json.obj("status" -> 200))
       }
-      case failure: JsError => {
-        Future(Status(BAD_REQUEST).as("application/json"))
-      }
+        
+      case failure: JsError => Status(BAD_REQUEST).as("application/json")
     }
   }
   
