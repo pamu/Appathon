@@ -12,7 +12,11 @@ object Utils {
        |
        |Welcome to the APPtitude community.
        |
-       |http://www.apptitude.co.in
+       |APPtitude register for notification => http://www.apptitude.co.in
+       |
+       |What is apptitude => http://www.apptitude.co.in/#one
+       |
+       |What to do => http://www.apptitude.co.in/#two
        |
        |Event Timeline :-
        |
