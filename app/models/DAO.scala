@@ -63,20 +63,23 @@ object DAO {
     })
   }
   
-  def put(hitCount: Long): Long = {
-    db.withSession(implicit session => {
+  def save(hit: Hit): Long = {
+    db.withTransaction(implicit tx => {
+      (hits returning hits.map(_.id)) += hit
+    })
+  }
+  
+  def updateHits(hitCount: Long): Unit = {
+    db.withTransaction(implicit tx => {
       val q = for(hit <- hits.filter(_.id === 1L)) yield hit.hits
       q.update(hitCount)
     })
   }
   
-  def init(): Unit = {
+  def getHits: Long = {
     db.withSession(implicit session => {
-      val q = for(hit <- hits.filter(_.id === 1L)) yield hit
-      if(!q.exists.run) {
-        q.insert(Hit(0, Some(1)))
-      }
+      val q = for(hit <- hits.filter(_.id === 1L)) yield hit.hits
+      q.first
     })
-    
   }
 }

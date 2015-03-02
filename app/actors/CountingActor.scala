@@ -19,6 +19,14 @@ object CountingActor {
 class CountingActor extends Actor with ActorLogging {
   
   //val (enumerator, channel) = Concurrent.broadcast[String]
+  
+  override def preStart(): Unit = {
+    try {
+      hits = models.DAO.getHits
+    }catch {
+      case _: Exception => hits = 0L
+    }
+  }
 
   import context.dispatcher
   
@@ -35,7 +43,8 @@ class CountingActor extends Actor with ActorLogging {
       log.info("no of hits = {}", hits.toString)
       
       val saveHits = Future {
-        models.DAO.put(hits)
+        import models._
+        DAO.updateHits(hits)
       }
       saveHits pipeTo self
     }

@@ -1,7 +1,11 @@
 package actors
 
+import java.sql.Timestamp
+import java.util.Date
+
 import akka.actor.{ActorLogging, Actor}
-import akka.actor.Status.{Success, Failure}
+import akka.actor.Status.Failure
+import models.{Reminder, User, DAO}
 import scala.concurrent.Future
 
 /**
@@ -18,6 +22,8 @@ object EmailActor {
   case class EmailSent(to: String)
   case class HtmlEmail(to: String, from: String, subject: String, htmlBody: String)
   case class HtmlEmailSent(to: String)
+  case class RegHtmlEmail(to: String, from: String, subject: String, htmlBody: String)
+  case class RegHtmlEmailSent(to: String)
 }
 
 class EmailActor extends Actor with ActorLogging {
@@ -71,27 +77,38 @@ class EmailActor extends Actor with ActorLogging {
       mailFuture pipeTo self
     }
 
-   
-    case failure: Failure => {
-      log.info("Sending email failed reason: {}", failure.toString)
+    case RegHtmlEmail(to, from, subject, htmlBody) => {
+      log.info("got an email request from {}", from)
+
+      val mailFuture = Future {
+        mail.setFrom(from)
+        mail.setRecipient(to)
+        mail.setSubject(subject)
+        mail.sendHtml(htmlBody)
+        RegHtmlEmailSent(to)
+      }
+
+      mailFuture pipeTo self
     }
       
-    case success: Success => {
+    case EmailSent(to) => {
+      log.info("Email Sent Successfully to {}", to)
+    }
       
-      success.status match {
-        
-        case EmailSent(email) => {
-          log.info("email sent to {}", email)
-        }
-        
-        case HtmlEmailSent(email) => {
-          log.info("email sent to {}", email)
-        }
-        
-        case _ => log.info("unknown message")
+    case HtmlEmailSent(to) => {
+      val f = Future {
+        val id = DAO.save(User(to, new Timestamp(new Date().getTime)))
+        DAO.save(Reminder(id))
       }
+      f pipeTo self
+    }
+
+    case RegHtmlEmail(to) => {
+      log.info("already registered user")
+    }
       
-      log.info("Email sent :)")
+    case failure: Failure => {
+      log.info("Sending email failed reason: {}", failure.toString)
     }
       
     case x => log.info("unknown message of type", x.getClass)

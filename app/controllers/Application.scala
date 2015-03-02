@@ -7,6 +7,8 @@ import play.api.libs.iteratee.Enumerator **/
 import java.sql.Timestamp
 import java.util.{TimeZone, GregorianCalendar, Date}
 
+import actors.CountingActor.Hit
+import global.AppathonGlobal
 import play.api.libs.json._
 import play.api.mvc.{Action, Controller}
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
@@ -51,13 +53,14 @@ object Application extends Controller {
   
   case class Remind(email: String)
   
-  def remind() = Action.async(parse.json) { request =>
+  def remind() = Action(parse.json) { request =>
     
     implicit val remindReads: Reads[Remind] = (
       (JsPath \ "email").read[String].map(email => Remind(email))
       )
     
     request.body.validate[Remind] match {
+        
       case success: JsSuccess[Remind] => {
         val remindMe = success.get
         import global._
@@ -66,30 +69,24 @@ object Application extends Controller {
         import utils._
         import models._
         
-        Future {
-          
-          if(DAO.userExists(remindMe.email)) {
-            
-            AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("Looks like you have already visited this place. Anyways, We will send you an remainder email, just after registrations are open."))
-          
-          }else {
-
-            val id = DAO.save(User(remindMe.email, new Timestamp(new Date().getTime)))
-            DAO.save(Reminder(id))
-            
-            AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("You will be reminded when the registrations open. Till then keep developing Apps."))
-          }
-          
-          Ok(Json.obj("status" -> 200))
+        if(DAO.userExists(remindMe.email)) {
+          AppathonGlobal.mailer ! RegHtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for" +
+            " your interest :)", Utils.mailBody("You have already registered for notification. " +
+            "Anyways, We will send you an remainder email, just after registrations are open." +
+            " This might have happened because of too many clicks on notify button on http://www.apptitude.co.in/"))
+        }else {
+          AppathonGlobal.mailer ! HtmlEmail(remindMe.email, Constants.apptitudeEmail, "Thanks for your interest :)", Utils.mailBody("You will be reminded when the registrations open. Till then keep developing Apps."))
         }
+        
+        Ok(Json.obj("status" -> 200))
       }
-      case failure: JsError => {
-        Future(Status(BAD_REQUEST).as("application/json"))
-      }
+        
+      case failure: JsError => Status(BAD_REQUEST).as("application/json")
     }
   }
   
-  def rules() = Action {
+  def rules() = Action { implicit request =>
+    AppathonGlobal.counter ! Hit(request.remoteAddress)
     Ok(views.html.rules())
   }
   
@@ -100,7 +97,7 @@ object Application extends Controller {
     import akka.util.Timeout
     import scala.concurrent.duration._
     implicit val timeout = Timeout(5 seconds)
-    val future: Future[BigInt] = (AppathonGlobal.counter ? Hits).mapTo[BigInt]
+    val future: Future[Long] = (AppathonGlobal.counter ? Hits).mapTo[Long]
     future.map(hits => Ok(hits.toString)).fallbackTo(Future(NotFound))
   }
   
