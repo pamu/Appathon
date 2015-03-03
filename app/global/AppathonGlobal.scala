@@ -18,7 +18,7 @@ object AppathonGlobal extends GlobalSettings {
     super.onStart(app)
     Logger.info("Appathon started")
 
-    models.DAO.createIfNotExists()
+   models.DAO.createIfNotExists()
 
   }
   
